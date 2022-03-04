@@ -54,36 +54,4 @@ public class FileUtil {
      }
         return IV;
     }
-
-    public static void LoadKeyStore(String password) {
-        try{
-        String storeFileName = "/Users/danielnoren/Desktop/ IntelliJPSecDir/exercises/src/CBC/medicalKS.java";
-        char[] storePW = "burger".toCharArray();
-        KeyStore store = KeyStore.getInstance("BKS", "BC");
-        FileInputStream fis = new FileInputStream(storeFileName);
-        store.load(fis, storePW);
-        fis.close();
-
-        } catch (Exception e){
-            System.out.println("LoadkeyStore");
-
-        }
-    }
-
-    public static void generateAndAddKey(KeyStore store) {
-        char[] secretKeyPW = "pizza".toCharArray();
-        try {
-            // generation of symmetric key
-            SecureRandom secureRandom = SecureRandom.getInstance("DEFAULT", "BC");
-            byte[] keyBytes = new byte[16];
-            secureRandom.nextBytes(keyBytes);
-            SecretKeySpec key = new SecretKeySpec(keyBytes, "AES");
-            // adding key to keystore
-            KeyStore.SecretKeyEntry entry = new KeyStore.SecretKeyEntry(key);
-            KeyStore.ProtectionParameter protection = new KeyStore.PasswordProtection(secretKeyPW); store.setEntry("key", entry, protection);
-        } catch (Exception e) {
-            System.out.println("generate and add key");
-        }
-       // return key;
-    }
 }

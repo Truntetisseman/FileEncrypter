@@ -9,7 +9,6 @@ import org.w3c.dom.ls.LSOutput;
 
 import java.security.*;
 
-import static CBC.medicalKS.createKeyStore;
 
 
 public class EncryptFileCBC {
@@ -18,13 +17,11 @@ public class EncryptFileCBC {
         String dir = "/Users/danielnoren/Desktop";
         String plaintextFileName = dir + "/" + "MedicalRecordNielsJ.pdf";
         SecureRandom secureRandom = SecureRandom.getInstance("DEFAULT", "BC");
-        KeyStore Store = createKeyStore();
-
-        byte[] keyBytes = Hex.decode("000102030405060708090a0b0c0d0e0f");
-        //byte[] keyBytes = new byte[16];
+        KeyStore ks = medicalKS.load();
+        medicalKS.generateAndAddKey(ks);
+        medicalKS.store(ks);
         byte[] iv = new byte[16];
         secureRandom.nextBytes(iv);
-        //secureRandom.nextBytes(keyBytes);
 
         {
             try {
@@ -32,7 +29,8 @@ public class EncryptFileCBC {
                 byte [] input = library.FileUtil.readAllBytes(plaintextFileName);
                 // encrypting
                 Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding", "BC");
-                SecretKeySpec secretKey = new SecretKeySpec(keyBytes, "AES");
+               // SecretKeySpec secretKey = new SecretKeySpec(medicalKS.getKey(), "AES");
+                SecretKeySpec secretKey = medicalKS.getKey();
                 cipher.init(Cipher.ENCRYPT_MODE, secretKey, new IvParameterSpec(iv));
                 byte[] output = cipher.doFinal(input);
                 System.out.println(output.length);
