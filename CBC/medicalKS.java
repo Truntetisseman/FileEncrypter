@@ -70,11 +70,11 @@ public class medicalKS {
             byte[] keyBytes = new byte[16];
             secureRandom.nextBytes(keyBytes);
             SecretKeySpec key = new SecretKeySpec(keyBytes, "AES");
+            System.out.println("Test genereate" + key);
             // adding key to keystore
             KeyStore.SecretKeyEntry entry = new KeyStore.SecretKeyEntry(key);
             KeyStore.ProtectionParameter protection = new KeyStore.PasswordProtection(secretKeyPW);
             store.setEntry("key", entry, protection);
-            System.out.println(key);
         } catch (Exception e) {
             System.out.println("generate and add key");
         }

@@ -17,7 +17,9 @@ public class DecryptFileCBC {
 
         String plaintextFileName = dir + "/" + mr + "." + "pdf" + "." + "aes",
                 testFile = dir + "/" + mr + "." + "test" + "." + "pdf", originalSHAFile = dir + "/" + "MedicalRecordNielsJ.pdf" ;
-        byte[] keyBytes = Hex.decode("000102030405060708090a0b0c0d0e0f");
+        //byte[] keyBytes = Hex.decode("000102030405060708090a0b0c0d0e0f");
+        KeyStore ks = medicalKS.load();
+        medicalKS.store(ks);
 
         {
             try {
@@ -28,7 +30,9 @@ public class DecryptFileCBC {
                 System.out.println(plaintextFileName + "." + ivString);
                 // Decrypting
                 Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding", "BC");
-                SecretKeySpec key = new SecretKeySpec(keyBytes, "AES");
+                //SecretKeySpec key = new SecretKeySpec(keyBytes, "AES");
+                SecretKeySpec key = medicalKS.getKey();
+                System.out.println("test" + key);
                 cipher.init(Cipher.DECRYPT_MODE, key, iv);
 
                 byte[] output = cipher.doFinal(input);
