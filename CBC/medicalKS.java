@@ -18,14 +18,14 @@ public class medicalKS {
     }
     static String dir = "/Users/danielnoren/Desktop";
     static String storeFileName = dir + "/" + "keystore.bks";
-    static char[] storePW = "burger".toCharArray(), secretKeyPW = "pizza".toCharArray();
+    static char[] storePW = "burger".toCharArray();
 
     public static KeyStore createKeyStore() {
         KeyStore store = null;
         try {
             store = KeyStore.getInstance("BKS", "BC");
             store.load(null, null);
-        } catch (Exception e) { }
+        } catch (Exception e) {e.printStackTrace(); }
         return store;
     }
 
@@ -70,9 +70,11 @@ public class medicalKS {
             byte[] keyBytes = new byte[16];
             secureRandom.nextBytes(keyBytes);
             SecretKeySpec key = new SecretKeySpec(keyBytes, "AES");
-            System.out.println("Test genereate" + key);
             // adding key to keystore
             KeyStore.SecretKeyEntry entry = new KeyStore.SecretKeyEntry(key);
+            System.out.print("MedicalKS: please choose a password: ");
+            Scanner scanner = new Scanner(System.in);
+            char[] secretKeyPW = scanner.nextLine().toCharArray();
             KeyStore.ProtectionParameter protection = new KeyStore.PasswordProtection(secretKeyPW);
             store.setEntry("key", entry, protection);
         } catch (Exception e) {
