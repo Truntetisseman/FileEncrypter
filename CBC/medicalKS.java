@@ -10,12 +10,12 @@ import java.security.Security;
 import java.util.Scanner;
 
 public class medicalKS {
-    public static void main(String[] args) {
-        Security.addProvider(new BouncyCastleProvider());
-        KeyStore ks = createKeyStore();
-        generateAndAddKey(ks);
-        store(ks);
-    }
+        public static void main(String[] args) {
+            Security.addProvider(new BouncyCastleProvider());
+            KeyStore ks = createKeyStore();
+            generateAndAddKey(ks);
+            store(ks);
+        }
     static String dir = "/Users/danielnoren/Desktop";
     static String storeFileName = dir + "/" + "keystore.bks";
     static char[] storePW = "burger".toCharArray(), secretKeyPW = "pizza".toCharArray();
