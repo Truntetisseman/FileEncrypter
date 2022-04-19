@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,7 +68,7 @@ public class FrontEnd extends Application {
         //Content
         GridPane encryptInputGridPane = new GridPane();
         FileChooser encryptFileChooser = new FileChooser();
-        Button openButtonEncrypt = new javafx.scene.control.Button("Encrypt File");
+        Button openButtonEncrypt = new Button("Encrypt File");
 
         // Styling
         encryptInputGridPane.setHgap(6);
@@ -82,7 +84,12 @@ public class FrontEnd extends Application {
                     public void handle(final ActionEvent e) {
                         File file = encryptFileChooser.showOpenDialog(stage);
                         if (file != null) {
-                            openFile(file);
+                            String fileAsString = file.toString();
+                            try {
+                                EncryptFileCBC.main(fileAsString);
+                            } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
+                                ex.printStackTrace();
+                            }
                         }
                     }
                 });
@@ -106,9 +113,9 @@ public class FrontEnd extends Application {
         // Decrypt box
         VBox decryptBox = new VBox(10);
         //Content
-        final GridPane decryptInputGridPane = new GridPane();
-        final FileChooser decryptFileChooser = new FileChooser();
-        final javafx.scene.control.Button openButtonDecrypt = new javafx.scene.control.Button("Decrypt File");
+        GridPane decryptInputGridPane = new GridPane();
+        FileChooser decryptFileChooser = new FileChooser();
+        Button openButtonDecrypt = new Button("Decrypt File");
 
         // Styling
         decryptInputGridPane.setHgap(6);
@@ -124,7 +131,9 @@ public class FrontEnd extends Application {
                     public void handle(final ActionEvent e) {
                         File file = decryptFileChooser.showOpenDialog(stage);
                         if (file != null) {
-                            openFile(file);
+                            String fileAsString = file.toString();
+                            System.out.println(file);
+                            DecryptFileCBC.main(fileAsString);
                         }
                     }
                 });
@@ -132,10 +141,10 @@ public class FrontEnd extends Application {
         tab2.setContent(decryptBox);
 
 
-        final FileChooser fileChooser = new FileChooser();
+        FileChooser fileChooser = new FileChooser();
 
-        final javafx.scene.control.Button openButton = new javafx.scene.control.Button("Encrypt File");
-        final javafx.scene.control.Button openMultipleButton = new Button("Decrypt File");
+        Button openButton = new javafx.scene.control.Button("Encrypt File");
+        Button openMultipleButton = new Button("Decrypt File");
 
         openButton.setOnAction(
                 new EventHandler<ActionEvent>() {
@@ -143,7 +152,13 @@ public class FrontEnd extends Application {
                     public void handle(final ActionEvent e) {
                         File file = fileChooser.showOpenDialog(stage);
                         if (file != null) {
-                            openFile(file);
+                            String fileAsString = file.toString();
+                            System.out.println(file);
+                            try {
+                                EncryptFileCBC.main(fileAsString);
+                            } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
+                                ex.printStackTrace();
+                            }
                         }
                     }
                 });
@@ -163,7 +178,7 @@ public class FrontEnd extends Application {
                 });
 
 
-        final GridPane inputGridPane = new GridPane();
+        GridPane inputGridPane = new GridPane();
 
         GridPane.setConstraints(openButton, 0, 0);
         GridPane.setConstraints(openMultipleButton, 1, 0);
