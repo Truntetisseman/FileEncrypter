@@ -14,9 +14,9 @@ public class EncryptFileCBC {
     public static void main(String plaintextFileName) throws NoSuchAlgorithmException, NoSuchProviderException {
         Security.addProvider(new BouncyCastleProvider());
         SecureRandom secureRandom = SecureRandom.getInstance("DEFAULT", "BC");
-        KeyStore ks = Keystore.load();
-        Keystore.generateAndAddKey(ks);
-        Keystore.store(ks);
+        KeyStore ks = OurKeystore.load();
+        OurKeystore.generateAndAddKey(ks);
+        OurKeystore.store(ks);
         byte[] iv = new byte[16];
         secureRandom.nextBytes(iv);
 
@@ -27,7 +27,7 @@ public class EncryptFileCBC {
                 // encrypting
                 Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding", "BC");
                // SecretKeySpec secretKey = new SecretKeySpec(medicalKS.getKey(), "AES");
-                SecretKeySpec secretKey = Keystore.getKey();
+                SecretKeySpec secretKey = OurKeystore.getKey();
                 cipher.init(Cipher.ENCRYPT_MODE, secretKey, new IvParameterSpec(iv));
                 byte[] output = cipher.doFinal(input);
                 System.out.println(output.length);

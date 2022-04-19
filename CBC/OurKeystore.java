@@ -9,7 +9,7 @@ import java.security.SecureRandom;
 import java.security.Security;
 import java.util.Scanner;
 
-public class Keystore {
+public class OurKeystore {
         public static void main(String[] args) {
             Security.addProvider(new BouncyCastleProvider());
             KeyStore ks = createKeyStore();
