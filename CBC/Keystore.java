@@ -9,7 +9,7 @@ import java.security.SecureRandom;
 import java.security.Security;
 import java.util.Scanner;
 
-public class medicalKS {
+public class Keystore {
         public static void main(String[] args) {
             Security.addProvider(new BouncyCastleProvider());
             KeyStore ks = createKeyStore();

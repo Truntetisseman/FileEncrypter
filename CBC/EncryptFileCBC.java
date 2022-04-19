@@ -5,7 +5,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.encoders.Hex;
-import org.w3c.dom.ls.LSOutput;
 
 import java.security.*;
 
@@ -17,9 +16,9 @@ public class EncryptFileCBC {
         String dir = "/Users/danielnoren/Desktop";
         String plaintextFileName = dir + "/" + "MedicalRecordNielsJ.pdf";
         SecureRandom secureRandom = SecureRandom.getInstance("DEFAULT", "BC");
-        KeyStore ks = medicalKS.load();
-        medicalKS.generateAndAddKey(ks);
-        medicalKS.store(ks);
+        KeyStore ks = Keystore.load();
+        Keystore.generateAndAddKey(ks);
+        Keystore.store(ks);
         byte[] iv = new byte[16];
         secureRandom.nextBytes(iv);
 
@@ -30,7 +29,7 @@ public class EncryptFileCBC {
                 // encrypting
                 Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding", "BC");
                // SecretKeySpec secretKey = new SecretKeySpec(medicalKS.getKey(), "AES");
-                SecretKeySpec secretKey = medicalKS.getKey();
+                SecretKeySpec secretKey = Keystore.getKey();
                 cipher.init(Cipher.ENCRYPT_MODE, secretKey, new IvParameterSpec(iv));
                 byte[] output = cipher.doFinal(input);
                 System.out.println(output.length);
