@@ -45,7 +45,7 @@ public class FileUtil {
         fileNames = folder.list();
         String IV = null;
         for (String fileName : fileNames) {
-            if (fileName.startsWith(fileParts[4]) && encryptedFileName.endsWith(".aes")) {
+            if (fileName.startsWith(fileParts[4]) && encryptedFileName.contains(".aes")) {
                 String[] parts = fileName.split("[.]");
                 if(parts[3]!= null){
                 IV = parts[3];

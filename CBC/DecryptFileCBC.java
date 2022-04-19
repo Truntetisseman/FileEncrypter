@@ -10,13 +10,11 @@ import java.security.*;
 
 
 public class DecryptFileCBC {
-    public static void main(String[] args) {
+    public static void main(String plaintextFileName) {
         Security.addProvider(new BouncyCastleProvider());
         String dir = "/Users/danielnoren/Desktop";
         String mr = "MedicalRecordNielsJ";
-
-        String plaintextFileName = dir + "/" + mr + "." + "pdf" + "." + "aes",
-                testFile = dir + "/" + mr + "." + "test" + "." + "pdf", originalSHAFile = dir + "/" + "MedicalRecordNielsJ.pdf" ;
+        String testFile = dir + "/" + mr + "." + "test" + "." + "pdf", originalSHAFile = dir + "/" + "MedicalRecordNielsJ.pdf" ;
         //byte[] keyBytes = Hex.decode("000102030405060708090a0b0c0d0e0f");
         KeyStore ks = medicalKS.load();
         medicalKS.store(ks);
@@ -24,15 +22,15 @@ public class DecryptFileCBC {
         {
             try {
                 String ivString = library.FileUtil.getIV(plaintextFileName);
+                System.out.println(ivString);
                 // Reading
                 IvParameterSpec iv = new IvParameterSpec(Hex.decode(ivString));
-                byte[] input = library.FileUtil.readAllBytes(plaintextFileName + "." + ivString);
-                System.out.println(plaintextFileName + "." + ivString);
+                byte[] input = library.FileUtil.readAllBytes(plaintextFileName);
+                System.out.println("Decrypter" + plaintextFileName);
                 // Decrypting
                 Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding", "BC");
                 //SecretKeySpec key = new SecretKeySpec(keyBytes, "AES");
                 SecretKeySpec key = medicalKS.getKey();
-                System.out.println("test" + key);
                 cipher.init(Cipher.DECRYPT_MODE, key, iv);
 
                 byte[] output = cipher.doFinal(input);

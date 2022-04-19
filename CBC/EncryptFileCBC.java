@@ -12,10 +12,8 @@ import java.security.*;
 
 
 public class EncryptFileCBC {
-    public static void main(String[] args) throws NoSuchAlgorithmException, NoSuchProviderException {
+    public static void main(String plaintextFileName) throws NoSuchAlgorithmException, NoSuchProviderException {
         Security.addProvider(new BouncyCastleProvider());
-        String dir = "/Users/danielnoren/Desktop";
-        String plaintextFileName = dir + "/" + "MedicalRecordNielsJ.pdf";
         SecureRandom secureRandom = SecureRandom.getInstance("DEFAULT", "BC");
         KeyStore ks = medicalKS.load();
         medicalKS.generateAndAddKey(ks);
