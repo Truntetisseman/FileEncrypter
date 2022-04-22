@@ -1,17 +1,19 @@
 package CBC;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-
 import library.FileUtil;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.encoders.Hex;
-import java.security.*;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.KeyStore;
+import java.security.MessageDigest;
+import java.security.Security;
 
 
 public class DecryptFileCBC {
-    public static void main(String[] args) {
+    public static void main(String args) {
         Security.addProvider(new BouncyCastleProvider());
         String dir = "/Users/danielnoren/Desktop";
         String mr = "MedicalRecordNielsJ";

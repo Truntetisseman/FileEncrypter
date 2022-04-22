@@ -129,6 +129,7 @@ public class FrontEnd extends Application {
                 new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(final ActionEvent e) {
+
                         File file = decryptFileChooser.showOpenDialog(stage);
                         if (file != null) {
                             String fileAsString = file.toString();
@@ -143,8 +144,27 @@ public class FrontEnd extends Application {
 
         FileChooser fileChooser = new FileChooser();
 
-        Button openButton = new javafx.scene.control.Button("Encrypt File");
+        Button openButton = new javafx.scene.control.Button("Encrypt Files");
         Button openMultipleButton = new Button("Decrypt File");
+
+        /*
+        openButton.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+
+                        if(Login.login("Patrick", "Pizza")){
+                            System.out.print("success");
+                        };
+                        //if(!Decrypt.checkForKeystore()){
+                           // Decrypt.createKeystore();
+                        //}
+                    }
+                }
+        );
+        */
+
+
 
         openButton.setOnAction(
                 new EventHandler<ActionEvent>() {
