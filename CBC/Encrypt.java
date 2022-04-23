@@ -27,14 +27,14 @@ public class Encrypt {
                 SecretKeySpec secretKey = Keystore.getKey();
                 cipher.init(Cipher.ENCRYPT_MODE, secretKey, new IvParameterSpec(iv));
                 byte[] output = cipher.doFinal(input);
-                System.out.println(output.length);
+                //System.out.println(output.length);
 
                 MessageDigest digest = MessageDigest.getInstance("SHA-256", "BC");
                 byte[] hashValue = digest.digest(input);
-                System.out.println("Hashvalue: " + Hex.toHexString(hashValue));
+                //System.out.println("Hashvalue: " + Hex.toHexString(hashValue));
 
                 // writing hash value to file
-                String hashFileName = Global.plaintextFileName + "." + "sha256";
+                String hashFileName = Global.plaintextFileName + "." + "SHA-256";//sha256
                 library.FileUtil.write(hashFileName, hashValue);
 
                 // writing
@@ -43,5 +43,4 @@ public class Encrypt {
             catch (Exception e) { e.printStackTrace(); }
         }
     }
-
 }

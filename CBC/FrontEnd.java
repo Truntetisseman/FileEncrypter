@@ -30,7 +30,7 @@ public class FrontEnd extends Application {
         launch(args);
     }
 
-    private Desktop desktop = Desktop.getDesktop();
+    private final Desktop desktop = Desktop.getDesktop();
 
     @Override
     public void start(final Stage stage) {
@@ -133,7 +133,7 @@ public class FrontEnd extends Application {
                         if (file != null) {
                             String fileAsString = file.toString();
                             System.out.println(file);
-                            Decrypt.DecryptFile(fileAsString);
+                            Decrypt.decryptFile(fileAsString);
                         }
                     }
                 });
@@ -209,8 +209,6 @@ public class FrontEnd extends Application {
 
         VBox vBox = new VBox(tabPane);
         Scene scene = new Scene(vBox);
-
-
 
         //stage.setScene(new Scene(rootGroup));
         stage.setScene(scene);

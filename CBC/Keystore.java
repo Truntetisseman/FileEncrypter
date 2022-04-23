@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.security.KeyStore;
 import java.security.SecureRandom;
-import java.security.Security;
 import java.util.Scanner;
 
 public class Keystore {
@@ -31,6 +30,34 @@ public class Keystore {
             store.load(null, null);
         } catch (Exception e) {e.printStackTrace(); }
         return store;
+    }
+
+    public static void generateAndAddKey(KeyStore store) {
+        try {
+            // generation of symmetric key
+            SecureRandom secureRandom = SecureRandom.getInstance("DEFAULT", "BC");
+            byte[] keyBytes = new byte[16];
+            secureRandom.nextBytes(keyBytes);
+            SecretKeySpec key = new SecretKeySpec(keyBytes, "AES");
+
+            // adding key to keystore
+            KeyStore.SecretKeyEntry entry = new KeyStore.SecretKeyEntry(key);
+            System.out.print("OurKeystore: please choose a password: ");
+            Scanner scanner = new Scanner(System.in);
+            char[] secretKeyPW = scanner.nextLine().toCharArray();
+            KeyStore.ProtectionParameter protection = new KeyStore.PasswordProtection(secretKeyPW);
+            store.setEntry("key", entry, protection);
+        } catch (Exception e) {
+            System.out.println("generate and add key");
+        }
+    }
+
+    public static void store(KeyStore store) {
+        try {
+            FileOutputStream fOut = new FileOutputStream(Global.storeFileName);
+            store.store(fOut, Global.storePW);
+            fOut.close();
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     public static KeyStore load() {
@@ -59,33 +86,4 @@ public class Keystore {
         } catch (Exception e) { e.printStackTrace(); }
         return key;
     }
-
-    public static void store(KeyStore store) {
-        try {
-            FileOutputStream fOut = new FileOutputStream(Global.storeFileName);
-            store.store(fOut, Global.storePW);
-            fOut.close();
-        } catch (Exception e) { e.printStackTrace(); }
-    }
-
-    public static void generateAndAddKey(KeyStore store) {
-        try {
-            // generation of symmetric key
-            SecureRandom secureRandom = SecureRandom.getInstance("DEFAULT", "BC");
-            byte[] keyBytes = new byte[16];
-            secureRandom.nextBytes(keyBytes);
-            SecretKeySpec key = new SecretKeySpec(keyBytes, "AES");
-
-            // adding key to keystore
-            KeyStore.SecretKeyEntry entry = new KeyStore.SecretKeyEntry(key);
-            System.out.print("OurKeystore: please choose a password: ");
-            Scanner scanner = new Scanner(System.in);
-            char[] secretKeyPW = scanner.nextLine().toCharArray();
-            KeyStore.ProtectionParameter protection = new KeyStore.PasswordProtection(secretKeyPW);
-            store.setEntry("key", entry, protection);
-        } catch (Exception e) {
-            System.out.println("generate and add key");
-        }
-    }
-
 }

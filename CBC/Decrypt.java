@@ -1,22 +1,15 @@
 package CBC;
 
 import library.FileUtil;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.encoders.Hex;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.KeyStore;
 import java.security.MessageDigest;
-import java.security.Security;
 
 public class Decrypt {
 
-    /**
-     *
-     * @return
-     */
     /*
     public static KeyStore createKeystore(){
         Security.addProvider(new BouncyCastleProvider());
@@ -36,7 +29,7 @@ public class Decrypt {
         return false;
     }
 
-    public static void DecryptFile(String plaintextFileName) {
+    public static void decryptFile(String plaintextFileName) {
 
         try {
             String ivString = FileUtil.getIV(plaintextFileName);
