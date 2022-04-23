@@ -61,8 +61,6 @@ public class FrontEnd extends Application {
         tabPane.setTabMaxWidth((stage.getWidth()/4) - 25);
         tabPane.setTabMaxHeight(69);
 
-
-
         // Encrypt box
         VBox encryptBox = new VBox(10);
         //Content
@@ -86,7 +84,7 @@ public class FrontEnd extends Application {
                         if (file != null) {
                             String fileAsString = file.toString();
                             try {
-                                EncryptFileCBC.main(fileAsString);
+                                Encrypt.EncryptFile(fileAsString);
                             } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
                                 ex.printStackTrace();
                             }
@@ -112,6 +110,7 @@ public class FrontEnd extends Application {
 
         // Decrypt box
         VBox decryptBox = new VBox(10);
+
         //Content
         GridPane decryptInputGridPane = new GridPane();
         FileChooser decryptFileChooser = new FileChooser();
@@ -134,7 +133,7 @@ public class FrontEnd extends Application {
                         if (file != null) {
                             String fileAsString = file.toString();
                             System.out.println(file);
-                            DecryptFileCBC.main(fileAsString);
+                            Decrypt.DecryptFile(fileAsString);
                         }
                     }
                 });
@@ -164,8 +163,6 @@ public class FrontEnd extends Application {
         );
         */
 
-
-
         openButton.setOnAction(
                 new EventHandler<ActionEvent>() {
                     @Override
@@ -175,7 +172,7 @@ public class FrontEnd extends Application {
                             String fileAsString = file.toString();
                             System.out.println(file);
                             try {
-                                EncryptFileCBC.main(fileAsString);
+                                Encrypt.EncryptFile(fileAsString);
                             } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
                                 ex.printStackTrace();
                             }
@@ -230,7 +227,6 @@ public class FrontEnd extends Application {
             );
         }
     }
-
 }
 
 

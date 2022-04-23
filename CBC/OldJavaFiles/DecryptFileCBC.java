@@ -1,5 +1,7 @@
-package CBC;
-
+package CBC.OldJavaFiles;
+/*
+import CBC.Global;
+import CBC.OurKeystore;
 import library.FileUtil;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.encoders.Hex;
@@ -15,16 +17,24 @@ import java.security.Security;
 public class DecryptFileCBC {
     public static void main(String args) {
         Security.addProvider(new BouncyCastleProvider());
-        String dir = "/Users/danielnoren/Desktop";
-        String mr = "MedicalRecordNielsJ";
 
-        String plaintextFileName = dir + "/" + mr + "." + "pdf" + "." + "aes",
-                testFile = dir + "/" + mr + "." + "test" + "." + "pdf", originalSHAFile = dir + "/" + "MedicalRecordNielsJ.pdf" ;
+        //String dir = "/Users/danielnoren/Desktop";
+        //String mr = "MedicalRecordNielsJ";
+
+        String originalSHAFile = Global.path + "/" + Global.fileName + Global.fileSuffix; //"MedicalRecordNielsJ.pdf" ;
+        String testFile = Global.path + "/" + Global.fileName + "." + "test" + "." + Global.fileSuffix + originalSHAFile;
+        String plaintextFileName = Global.path + "/" + Global.fileName + "." + Global.fileSuffix + "." + "aes" + testFile;
+
+
+        //String plaintextFileName = Global.path + "/" + Global.fileName + "." + "pdf" + "." + "aes",
+        //        testFile = Global.path + "/" + Global.fileName + "." + "test" + "." + "pdf",
+        //        originalSHAFile = Global.path + "/" + "MedicalRecordNielsJ.pdf" ;
         //byte[] keyBytes = Hex.decode("000102030405060708090a0b0c0d0e0f");
+
         KeyStore ks = OurKeystore.load();
         OurKeystore.store(ks);
 
-        {
+
             try {
                 String ivString = FileUtil.getIV(plaintextFileName);
                 // Reading
@@ -52,6 +62,6 @@ public class DecryptFileCBC {
                 // Writing
                 FileUtil.write("", testFile, output, "");
             } catch (Exception e) { e.printStackTrace(); }
-        }
     }
 }
+*/

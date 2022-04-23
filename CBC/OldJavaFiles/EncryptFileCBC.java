@@ -1,8 +1,10 @@
-package CBC;
+package CBC.OldJavaFiles;
+/*
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import CBC.OurKeystore;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.encoders.Hex;
 
@@ -13,6 +15,7 @@ import java.security.*;
 public class EncryptFileCBC {
     public static void main(String plaintextFileName) throws NoSuchAlgorithmException, NoSuchProviderException {
         Security.addProvider(new BouncyCastleProvider());
+
         SecureRandom secureRandom = SecureRandom.getInstance("DEFAULT", "BC");
         KeyStore ks = OurKeystore.load();
         OurKeystore.generateAndAddKey(ks);
@@ -43,4 +46,4 @@ public class EncryptFileCBC {
             } catch (Exception e) { e.printStackTrace(); }
         }
     }
-}
+}*/

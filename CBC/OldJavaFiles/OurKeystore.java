@@ -1,6 +1,6 @@
-package CBC;
+package CBC.OldJavaFiles;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
+/*
 import javax.crypto.spec.SecretKeySpec;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,16 +12,19 @@ import java.util.Scanner;
 public class OurKeystore {
         public static void main(String[] args) {
             Security.addProvider(new BouncyCastleProvider());
+
             KeyStore ks = createKeyStore();
             generateAndAddKey(ks);
             store(ks);
         }
+    /*
     static String dir = "/Users/danielnoren/Desktop";
     static String storeFileName = dir + "/" + "keystore.bks";
     static char[] storePW = "burger".toCharArray();
 
     public static KeyStore createKeyStore() {
         KeyStore store = null;
+
         try {
             store = KeyStore.getInstance("BKS", "BC");
             store.load(null, null);
@@ -35,8 +38,8 @@ public class OurKeystore {
             // step (1)
             ks = KeyStore.getInstance("BKS", "BC");
             // step (2)
-            FileInputStream fis = new FileInputStream(storeFileName);
-            ks.load(fis, storePW);
+            FileInputStream fis = new FileInputStream(Global.storeFileName);
+            ks.load(fis, Global.storePW);
             fis.close();
         } catch (Exception e) { e.printStackTrace(); }
         return ks;
@@ -46,7 +49,7 @@ public class OurKeystore {
         SecretKeySpec key = null;
         try {
             KeyStore ks = load();
-            System.out.print("MedicalKS: please type password: ");
+            System.out.print("OurKeystore: please type password: ");
             Scanner scanner = new Scanner(System.in);
             char[] pw = scanner.nextLine().toCharArray();
             key = (SecretKeySpec) ks.getKey("key", pw);
@@ -56,8 +59,8 @@ public class OurKeystore {
 
     public static void store(KeyStore store) {
         try {
-            FileOutputStream fOut = new FileOutputStream(storeFileName);
-            store.store(fOut, storePW);
+            FileOutputStream fOut = new FileOutputStream(Global.storeFileName);
+            store.store(fOut, Global.storePW);
             fOut.close();
         } catch (Exception e) { e.printStackTrace(); }
     }
@@ -72,7 +75,7 @@ public class OurKeystore {
             SecretKeySpec key = new SecretKeySpec(keyBytes, "AES");
             // adding key to keystore
             KeyStore.SecretKeyEntry entry = new KeyStore.SecretKeyEntry(key);
-            System.out.print("MedicalKS: please choose a password: ");
+            System.out.print("OurKeystore: please choose a password: ");
             Scanner scanner = new Scanner(System.in);
             char[] secretKeyPW = scanner.nextLine().toCharArray();
             KeyStore.ProtectionParameter protection = new KeyStore.PasswordProtection(secretKeyPW);
@@ -80,5 +83,6 @@ public class OurKeystore {
         } catch (Exception e) {
             System.out.println("generate and add key");
         }
+
     }
-}
+} */
