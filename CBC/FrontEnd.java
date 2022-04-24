@@ -84,7 +84,7 @@ public class FrontEnd extends Application {
                         if (file != null) {
                             String fileAsString = file.toString();
                             try {
-                                Encrypt.EncryptFile(fileAsString);
+                                Encrypt.encryptFile(fileAsString);
                             } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
                                 ex.printStackTrace();
                             }
@@ -140,7 +140,6 @@ public class FrontEnd extends Application {
         decryptBox.getChildren().addAll(decryptText, openButtonDecrypt);
         tab2.setContent(decryptBox);
 
-
         FileChooser fileChooser = new FileChooser();
 
         Button openButton = new javafx.scene.control.Button("Encrypt Files");
@@ -172,7 +171,7 @@ public class FrontEnd extends Application {
                             String fileAsString = file.toString();
                             System.out.println(file);
                             try {
-                                Encrypt.EncryptFile(fileAsString);
+                                Encrypt.encryptFile(fileAsString);
                             } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
                                 ex.printStackTrace();
                             }

@@ -9,7 +9,7 @@ import java.security.*;
 
 public class Encrypt {
 
-    public static void EncryptFile(String file) throws NoSuchAlgorithmException, NoSuchProviderException {
+    public static void encryptFile(String file) throws NoSuchAlgorithmException, NoSuchProviderException {
 
         SecureRandom secureRandom = SecureRandom.getInstance("DEFAULT", "BC");
         byte[] iv = new byte[16];

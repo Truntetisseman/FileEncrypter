@@ -10,25 +10,6 @@ import java.security.MessageDigest;
 
 public class Decrypt {
 
-    /*
-    public static KeyStore createKeystore(){
-        Security.addProvider(new BouncyCastleProvider());
-        String dir = "/Users/danielnoren/Desktop";
-        String mr = "MedicalRecordNielsJ";
-
-        String plaintextFileName = dir + "/" + mr + "." + "pdf" + "." + "aes",
-                testFile = dir + "/" + mr + "." + "test" + "." + "pdf", originalSHAFile = dir + "/" + "MedicalRecordNielsJ.pdf" ;
-        //byte[] keyBytes = Hex.decode("000102030405060708090a0b0c0d0e0f");
-        KeyStore ks = KeyStore();
-        KeyStore.store(ks);
-
-        return ks;
-    }*/
-
-    public static Boolean checkForKeystore(){
-        return false;
-    }
-
     public static void decryptFile(String plaintextFileName) {
 
         try {
@@ -62,5 +43,9 @@ public class Decrypt {
             // Writing
             FileUtil.write("", Global.testFile, output, "");
         } catch (Exception e) { e.printStackTrace(); }
+    }
+
+    public static Boolean checkForKeystore(){
+        return false;
     }
 }

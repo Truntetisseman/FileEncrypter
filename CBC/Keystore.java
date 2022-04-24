@@ -9,19 +9,6 @@ import java.util.Scanner;
 
 public class Keystore {
 
-    /*
-    Security.addProvider(new BouncyCastleProvider());
-    KeyStore ks = createKeyStore();
-    generateAndAddKey(ks);
-    store(ks);
-    */
-
-    /*
-    static String dir = "/Users/danielnoren/Desktop";
-    static String storeFileName = dir + "/" + "keystore.bks";
-    static char[] storePW = "burger".toCharArray();
-    */
-
     public static KeyStore createKeyStore() {
         KeyStore store = null;
 

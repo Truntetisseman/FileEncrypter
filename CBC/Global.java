@@ -2,7 +2,7 @@ package CBC;
 
 interface Global {
     //Paths and other global variables
-    String path = "/Users/danielnoren/Desktop"; //
+    String path = "/Users/danielnoren/Desktop"; ///Users/noel/Desktop
     String fileName = "MedicalRecordNielsJ"; //
     String fileSuffix = "pdf"; // eg. pdf, jpeg, docx
 
