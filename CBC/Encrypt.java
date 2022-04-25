@@ -11,8 +11,17 @@ public class Encrypt {
     public static void encryptFile(String file) throws NoSuchAlgorithmException, NoSuchProviderException {
 
         SecureRandom secureRandom = SecureRandom.getInstance("DEFAULT", "BC");
+        KeyStore ks = Keystore.load();
+        Keystore.generateAndAddKey(ks);
+        Keystore.store(ks);
         byte[] iv = new byte[16];
         secureRandom.nextBytes(iv);
+
+        /*
+        SecureRandom secureRandom = SecureRandom.getInstance("DEFAULT", "BC");
+        byte[] iv = new byte[16];
+        secureRandom.nextBytes(iv);
+        */
 
         {
             try {

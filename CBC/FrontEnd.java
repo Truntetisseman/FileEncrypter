@@ -94,7 +94,6 @@ public class FrontEnd extends Application {
         encryptBox.getChildren().addAll(encryptText, openButtonEncrypt);
         tab1.setContent(encryptBox);
 
-
         // Log box
         VBox logBox = new VBox(10);
         // Content
