@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import javax.crypto.SecretKey;
 import java.security.*;
+import java.util.Arrays;
 import javax.crypto.spec.SecretKeySpec;
 
 public class FileUtil {
@@ -53,5 +54,11 @@ public class FileUtil {
         }
      }
         return IV;
+    }
+    public static String getTestname(String encryptedFileName){
+        String[] fileParts = encryptedFileName.split("\\.");
+        String testFileName = fileParts[0] + "." + "test" + "." + fileParts[fileParts.length-3];
+        System.out.println(testFileName);
+        return testFileName;
     }
 }
