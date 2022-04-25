@@ -7,9 +7,9 @@ interface Global {
     String fileSuffix = "pdf"; // eg. pdf, jpeg, docx
 
     //Variables for decrypt
-    String originalSHAFile = Global.path + "/" + Global.fileName + Global.fileSuffix; //"MedicalRecordNielsJ.pdf" ;
-    String testFile = Global.path + "/" + Global.fileName + "." + "test" + "." + Global.fileSuffix + originalSHAFile;
-    String plaintextFileName = Global.path + "/" + Global.fileName + "." + Global.fileSuffix + "." + "aes" + testFile;
+    String originalSHAFile = Global.path + "/" + Global.fileName + "." + Global.fileSuffix; //"MedicalRecordNielsJ.pdf" ;
+    String testFile = Global.path + "/" + Global.fileName + "." + "test" + "." + Global.fileSuffix; /*+ originalSHAFile*/;
+    String plaintextFileName = Global.path + "/" + Global.fileName + "." + Global.fileSuffix + "." + "aes";// + testFile;
 
     //Keystore
     String keystoreDir = "/Users/danielnoren/Desktop";
