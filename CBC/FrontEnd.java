@@ -131,8 +131,8 @@ public class FrontEnd extends Application {
                         File file = decryptFileChooser.showOpenDialog(stage);
                         if (file != null) {
                             String fileAsString = file.toString();
-                            System.out.println(file);
-                            Decrypt.decryptFile(fileAsString);
+                            System.out.println("Frontend" + file);
+                            Decrypt.decryptFile(fileAsString, "/Users/danielnoren/Desktop/test/MedicalRecordNielsJ.pdf.sha256");
                         }
                     }
                 });

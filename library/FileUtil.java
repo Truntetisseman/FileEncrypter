@@ -41,11 +41,11 @@ public class FileUtil {
     public static String getIV(String encryptedFileName) {
         String[] fileNames ;
         String[] fileParts = encryptedFileName.split("/");
-        File folder = new File("/Users/danielnoren/Desktop");
+        File folder = new File("/Users/danielnoren/Desktop/test");
         fileNames = folder.list();
         String IV = null;
         for (String fileName : fileNames) {
-            if (fileName.startsWith(fileParts[4]) && encryptedFileName.contains(".aes")) {
+            if (fileName.startsWith(fileParts[5]) && encryptedFileName.contains(".aes")) {
                 String[] parts = fileName.split("[.]");
                 if(parts[3]!= null){
                 IV = parts[3];
