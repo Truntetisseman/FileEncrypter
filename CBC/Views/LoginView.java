@@ -1,6 +1,7 @@
 package CBC.Views;
 
 import CBC.Global;
+import CBC.Utility;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -43,7 +44,10 @@ public class LoginView {
                     public void handle(final ActionEvent e) {
                         if(checkCredentials(uNameTextField.getText(), pWordTextField.getText()) == true){
                             System.out.print("Authorized");
+                            Utility.logAction(uNameTextField.getText(), "Authorized Login", "nil", "nil");
                             ViewManager.changeScene(MainView.loginScene());
+                        } else {
+                            Utility.errorDialog("nil", "nil", "Unauthorized Login Attempt", "Your login or password is incorrect", "Check your username and password and try again!");
                         }
                     }
                 });

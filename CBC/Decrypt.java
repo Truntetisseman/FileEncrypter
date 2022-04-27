@@ -49,7 +49,8 @@ public class Decrypt {
             }
             // Writing
             FileUtil.write("",testFile, output, "");
-        } catch (Exception e) { e.printStackTrace(); }
+            Utility.successDialog(plaintextFileName, Global.decryptFolder, "Decryption Success", plaintextFileName + " was decrypted succesfully", "The decryption worked as expected, close this window and enjoy your decrypted file");
+        } catch (Exception e) { e.printStackTrace(); Utility.errorDialog(plaintextFileName, Global.decryptFolder, "Decryption Error", plaintextFileName + " was not decryption, an error occurred", "Please try again, check your passwords!"); }
     }
 
     public static Boolean checkForKeystore(){

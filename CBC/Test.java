@@ -29,10 +29,10 @@ public class Test {
         String[] fileParts = encryptedFileName.split("/");
         System.out.println(encryptedFileName);
             if (encryptedFileName.contains(".aes")) {
-                Utility.successDialog(encryptedFileName, encryptedFileName);
+                Utility.successDialog(encryptedFileName, encryptedFileName, "Test Encryption Success", "The test has succeeded", "The test was conducted without any errors, your system is up to date");
             } else {
                 System.out.println("File not found");
-                Utility.errorDialog(encryptedFileName, encryptedFileName);
+                Utility.errorDialog(encryptedFileName, encryptedFileName, "Test Encryption Error", "The test failed", "Your system is not working properly, check your passwords and paths!");
             }
     }
 

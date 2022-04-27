@@ -45,9 +45,9 @@ public class Encrypt {
 
                 // writing
                 library.FileUtil.write("AES/ECB/PKCS5Padding",fileAsString, output, Hex.toHexString(iv));
-                Utility.successDialog(file.getName(), file.getAbsolutePath());
+                Utility.successDialog(file.getName(), file.getAbsolutePath(), "Encryption Success", "The file was succesfully encrypted", file.getName() + " is now encrypted!");
             }
-            catch (Exception e) { e.printStackTrace(); Utility.errorDialog(file.getName(), file.getAbsolutePath()); }
+            catch (Exception e) { e.printStackTrace(); Utility.errorDialog(file.getName(), file.getAbsolutePath(), "Encryption Error", "An error occurred", "The encryption failed please try again!"); }
         }
     }
 
