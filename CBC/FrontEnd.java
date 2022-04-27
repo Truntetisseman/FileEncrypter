@@ -1,13 +1,15 @@
 package CBC;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -34,6 +36,7 @@ public class FrontEnd extends Application {
 
     @Override
     public void start(final Stage stage) {
+
         stage.setTitle("Program with much security, password is pizza");
 
         stage.setWidth(900);
@@ -68,6 +71,8 @@ public class FrontEnd extends Application {
         FileChooser encryptFileChooser = new FileChooser();
         Button openButtonEncrypt = new Button("Encrypt File");
 
+        Button createKeystoreButton = new Button("Create Keystore");
+
         // Styling
         encryptInputGridPane.setHgap(6);
         encryptInputGridPane.setVgap(6);
@@ -84,30 +89,29 @@ public class FrontEnd extends Application {
                         if (file != null) {
                             String fileAsString = file.toString();
                             try {
-                                Encrypt.encryptFile(fileAsString);
+                                Encrypt.encryptFile(file);
                             } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
                                 ex.printStackTrace();
                             }
                         }
                     }
                 });
-        encryptBox.getChildren().addAll(encryptText, openButtonEncrypt);
+
+        createKeystoreButton.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(final ActionEvent e) {
+                        Keystore.generateAndAddKey(Keystore.createKeyStore());
+                    }
+                });
+
+
+        encryptBox.getChildren().addAll(encryptText, openButtonEncrypt, createKeystoreButton);
         tab1.setContent(encryptBox);
 
-        // Log box
-        VBox logBox = new VBox(10);
-        // Content
-        GridPane logBoxInputGridPane = new GridPane();
 
-        // Styling
-        logBoxInputGridPane.setHgap(6);
-        logBoxInputGridPane.setVgap(6);
-        logBox.setPadding(new Insets(12, 12, 12, 12));
 
-        Text logText = new Text();
-        logText.setText("All user logs are stored here");
-
-        // Decrypt box
+        // -------------------------------------------- Decrypt Tab
         VBox decryptBox = new VBox(10);
 
         //Content
@@ -131,13 +135,110 @@ public class FrontEnd extends Application {
                         File file = decryptFileChooser.showOpenDialog(stage);
                         if (file != null) {
                             String fileAsString = file.toString();
+                            String fileName = file.getName();
+                            String[] fileParts = fileName.split("\\.");
+                            System.out.println("its here: " + fileName);
                             System.out.println("Frontend" + file);
-                            Decrypt.decryptFile(fileAsString, "/Users/danielnoren/Desktop/test/MedicalRecordNielsJ.pdf.sha256");
+                            Decrypt.decryptFile(fileAsString, Global.decryptFolder + "/" + fileParts[0] + "." + fileParts[1] + ".sha256");
                         }
                     }
                 });
         decryptBox.getChildren().addAll(decryptText, openButtonDecrypt);
         tab2.setContent(decryptBox);
+
+        // --------------------------------------------  Log Tab
+        VBox logBox = new VBox(10);
+        // Content
+        GridPane logBoxInputGridPane = new GridPane();
+
+        // Styling
+        logBoxInputGridPane.setHgap(6);
+        logBoxInputGridPane.setVgap(6);
+        logBox.setPadding(new Insets(12, 12, 12, 12));
+        Button refreshLogsBtn = new Button("Refresh Logs");
+
+        Text logText = new Text();
+        logText.setText("User logs");
+
+        TableView tableView = new TableView();
+
+        //Column 1
+        TableColumn<Logs, String> column1 = new TableColumn<>("Timestamp");
+        column1.setCellValueFactory(new PropertyValueFactory<>("timeStamp"));
+
+        TableColumn<Logs, String> column2 = new TableColumn<>("Username");
+        column2.setCellValueFactory(new PropertyValueFactory<>("userName"));
+
+        //Column 3
+        TableColumn<Logs, String> column3= new TableColumn<>("Action");
+        column3.setCellValueFactory(new PropertyValueFactory<>("action"));
+
+        //Column 4
+        TableColumn<Logs, String> column4 = new TableColumn("Filename");
+        column4.setCellValueFactory(new PropertyValueFactory<>("fileName"));
+
+        //Column 4
+        TableColumn<Logs, String> column5 = new TableColumn("Filepath");
+        column5.setCellValueFactory(new PropertyValueFactory<>("path"));
+
+
+        tableView.getColumns().add(column1);
+        tableView.getColumns().add(column2);
+        tableView.getColumns().add(column3);
+        tableView.getColumns().add(column4);
+        tableView.getColumns().add(column5);
+
+        refreshLogsBtn.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(final ActionEvent e) {
+                        tableView.getItems().clear();
+                        ObservableList<Logs> log= FXCollections.observableArrayList();
+                        for (int i = 0; i < Global.logs.toArray().length; i++) {
+
+                            if (Global.logs.get(i) != null) {
+                                Logs l = new Logs(Global.logs.get(i).userName, Global.logs.get(i).action, Global.logs.get(i).fileName, Global.logs.get(i).path);
+                                log.add(l);               }
+                        }
+
+                        tableView.setItems(log);
+
+
+                    }
+                });
+
+        logBox.getChildren().addAll(logText, refreshLogsBtn, tableView);
+        tab3.setContent(logBox);
+
+        // --------------------------------------------  Test Tab
+        VBox testBox = new VBox(10);
+        GridPane testBoxInputGridPane = new GridPane();
+
+        // Styling
+        testBoxInputGridPane.setHgap(6);
+        testBoxInputGridPane.setVgap(6);
+        testBox.setPadding(new Insets(12, 12, 12, 12));
+        Button testBtn = new Button("Perform Epic Test");
+
+        testBtn.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        try {
+                            Test.testEncryption();
+                        } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+        );
+
+        Text testText = new Text();
+        testText.setText("Test that the system performs as expected");
+
+        testBox.getChildren().addAll(testText, testBtn);
+
+        tab4.setContent(testBox);
 
         FileChooser fileChooser = new FileChooser();
 
@@ -170,7 +271,7 @@ public class FrontEnd extends Application {
                             String fileAsString = file.toString();
                             System.out.println(file);
                             try {
-                                Encrypt.encryptFile(fileAsString);
+                                Encrypt.encryptFile(file);
                             } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
                                 ex.printStackTrace();
                             }

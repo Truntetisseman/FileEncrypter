@@ -2,14 +2,17 @@ package CBC;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.encoders.Hex;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.File;
 import java.security.*;
 
 public class Encrypt {
 
-    public static void encryptFile(String file) throws NoSuchAlgorithmException, NoSuchProviderException {
+    public static void encryptFile(File file) throws NoSuchAlgorithmException, NoSuchProviderException {
+        String fileAsString = file.toString();
         Security.addProvider(new BouncyCastleProvider());
         SecureRandom secureRandom = SecureRandom.getInstance("DEFAULT", "BC");
         KeyStore ks = Keystore.load();
@@ -21,7 +24,7 @@ public class Encrypt {
         {
             try {
                 // reading
-                byte [] input = library.FileUtil.readAllBytes(file);
+                byte [] input = library.FileUtil.readAllBytes(fileAsString);
 
                 // encrypting
                 Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding", "BC");
@@ -41,9 +44,18 @@ public class Encrypt {
                 library.FileUtil.write(hashFileName, hashValue);
 
                 // writing
-                library.FileUtil.write("AES/ECB/PKCS5Padding",file, output, Hex.toHexString(iv));
+                library.FileUtil.write("AES/ECB/PKCS5Padding",fileAsString, output, Hex.toHexString(iv));
+                Utility.successDialog(file.getName(), file.getAbsolutePath());
             }
-            catch (Exception e) { e.printStackTrace(); }
+            catch (Exception e) { e.printStackTrace(); Utility.errorDialog(file.getName(), file.getAbsolutePath()); }
         }
     }
+
+
+
+
+
+
 }
+
+

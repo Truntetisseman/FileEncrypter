@@ -1,13 +1,10 @@
 package library;
 
+import CBC.Global;
+
 import java.io.File;
-import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import javax.crypto.SecretKey;
-import java.security.*;
-import java.util.Arrays;
-import javax.crypto.spec.SecretKeySpec;
 
 public class FileUtil {
     public static byte[] readAllBytes(String plaintextFileName) {
@@ -42,7 +39,7 @@ public class FileUtil {
     public static String getIV(String encryptedFileName) {
         String[] fileNames ;
         String[] fileParts = encryptedFileName.split("/");
-        File folder = new File("/Users/danielnoren/Desktop/test");
+        File folder = new File(Global.decryptFolder);
         fileNames = folder.list();
         String IV = null;
         for (String fileName : fileNames) {
