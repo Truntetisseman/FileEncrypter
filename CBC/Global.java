@@ -1,6 +1,6 @@
 package CBC;
 
-interface Global {
+public interface Global {
     //Paths and other global variables
   /*  String path = "/Users/danielnoren/Desktop"; ///Users/noel/Desktop
     String fileName = "MedicalRecordNielsJ"; //
@@ -16,5 +16,9 @@ interface Global {
     String keystoreDir = "/Users/danielnoren/Desktop";
     String storeFileName = keystoreDir + "/" + "keystore.bks";
     char[] storePW = "burger".toCharArray();
+
+    //Login
+    String password = "pizza";
+    String username = "psec";
 
 }
