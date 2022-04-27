@@ -31,25 +31,25 @@ public class Utility {
     /**
      * Shows an information dialog window with hardcoded values, when the encryption succeeds
      */
-    public static void successDialog(String fileName, String filePath){
+    public static void successDialog(String fileName, String filePath, String action, String header, String context){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setHeaderText("The file was encrypted without any errors");
         alert.setContentText("Close this window and feel safe, knowing your encryption software is secure and works!");
         alert.showAndWait();
-        Utility.logAction("Testuser", "Test Encryption Succeeded", fileName, filePath);
+        Utility.logAction("Testuser", action, fileName, filePath);
     }
 
     /**
      * Shows an error dialog when encryption fails
      */
-    public static void errorDialog(String fileName, String filePath){
+    public static void errorDialog(String fileName, String filePath, String action, String header, String context){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
-        alert.setHeaderText("An error occurred while performing the test");
-        alert.setContentText("Try test encrypting the file again and make sure you input the correct password for your keystore!");
+        alert.setHeaderText(header);
+        alert.setContentText(context);
         alert.showAndWait();
-        Utility.logAction("Testuser", "Test Encryption Failed", fileName, filePath);
+        Utility.logAction("Testuser", action, fileName, filePath);
     }
 
 }
