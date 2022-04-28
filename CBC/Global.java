@@ -23,8 +23,4 @@ public interface Global {
 
     //Decrypt
     String decryptFolder = "/Users/patrickorum/Desktop/testfolder";
-
-
-
-
 }

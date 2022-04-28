@@ -29,7 +29,6 @@ public class MainView {
     public static Scene loginScene() {
         TabPane tabPane = new TabPane();
 
-
         Tab tab1 = new Tab("Encrypt");
         Tab tab2 = new Tab("Decrypt"  );
         Tab tab3 = new Tab("Log");
@@ -73,7 +72,7 @@ public class MainView {
                     public void handle(final ActionEvent e) {
                         File file = encryptFileChooser.showOpenDialog(loginScene().getWindow());
                         if (file != null) {
-                            String fileAsString = file.toString();
+                            //String fileAsString = file.toString();
                             try {
                                 Encrypt.encryptFile(file);
                             } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
@@ -94,8 +93,6 @@ public class MainView {
 
         encryptBox.getChildren().addAll(encryptText, openButtonEncrypt, createKeystoreButton);
         tab1.setContent(encryptBox);
-
-
 
         // -------------------------------------------- Decrypt Tab
         VBox decryptBox = new VBox(10);
@@ -166,7 +163,6 @@ public class MainView {
         //Column 4
         TableColumn<Logs, String> column5 = new TableColumn("Filepath");
         column5.setCellValueFactory(new PropertyValueFactory<>("path"));
-
 
         tableView.getColumns().add(column1);
         tableView.getColumns().add(column2);
@@ -265,9 +261,6 @@ public class MainView {
                     }
                 });
 
-
-
-
         GridPane inputGridPane = new GridPane();
 
         GridPane.setConstraints(openButton, 0, 0);
@@ -285,11 +278,6 @@ public class MainView {
 
         return scene;
     }
-
-
-
-
-
 }
 
 

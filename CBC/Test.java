@@ -35,7 +35,4 @@ public class Test {
                 Utility.errorDialog(encryptedFileName, encryptedFileName, "Test Encryption Error", "The test failed", "Your system is not working properly, check your passwords and paths!");
             }
     }
-
-
-
 }
