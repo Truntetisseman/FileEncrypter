@@ -85,7 +85,7 @@ public class MainView {
                 new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(final ActionEvent e) {
-                        Keystore.generateAndAddKey(Keystore.createKeyStore());
+                        Keystore.addKeystore();
                     }
                 });
 

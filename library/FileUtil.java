@@ -6,6 +6,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+
 public class FileUtil {
     public static byte[] readAllBytes(String plaintextFileName) {
         byte[] bytesRead = {};
@@ -39,14 +40,17 @@ public class FileUtil {
     public static String getIV(String encryptedFileName) {
         String[] fileNames ;
         String[] fileParts = encryptedFileName.split("/");
+        System.out.println("look here" + encryptedFileName);
         File folder = new File(Global.decryptFolder);
         fileNames = folder.list();
         String IV = null;
         for (String fileName : fileNames) {
-            if (fileName.startsWith(fileParts[5]) && encryptedFileName.contains(".aes")) {
+            var index = java.util.Arrays.asList(fileParts).indexOf(fileParts[fileParts.length -1]);
+            System.out.println(index);
+            if (fileName.startsWith(fileParts[index]) && encryptedFileName.contains(".aes")) {
                 String[] parts = fileName.split("[.]");
-                if(parts[3]!= null){
-                IV = parts[3];
+                if(parts[parts.length -1]!= null){
+                IV = parts[parts.length -1];
             }
         }
      }

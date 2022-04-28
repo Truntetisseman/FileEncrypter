@@ -23,7 +23,7 @@ public class Decrypt {
         Security.addProvider(new BouncyCastleProvider());
         KeyStore ks = Keystore.load();
         Keystore.store(ks);
-        System.out.println("plaintext" + plaintextFileName);
+
         String testFile = FileUtil.getTestname(plaintextFileName);
 
         try {

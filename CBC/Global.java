@@ -5,22 +5,22 @@ import java.util.List;
 
 public interface Global {
 
-    //Keystore
-    String keystoreDir = "/Users/patrickorum/Desktop/testfolder/keystore";
+    // Keystore
+    String keystoreDir = "FileEncrypter/CBC/testfolder/keystore";
     String storeFileName = keystoreDir + "/" + "keystore.bks";
     char[] storePW = "burger".toCharArray();
 
-    //Login
+    // Login
     String password = "pizza";
     String username = "psec";
 
-    //Logs
+    // Logs
     List<Logs> logs = new ArrayList<>();
 
-    //Test
-    String testfolder = "/Users/patrickorum/Desktop/testfolder";
+    // Test
+    String testfolder = "FileEncrypter/CBC/testfolder";
     String testEncryptFile = "testfile.rtf";
 
-    //Decrypt
-    String decryptFolder = "/Users/patrickorum/Desktop/testfolder";
+    // Decrypt
+    String decryptFolder = "FileEncrypter/CBC/testfolder";
 }

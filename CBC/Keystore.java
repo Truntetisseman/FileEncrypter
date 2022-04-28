@@ -25,6 +25,12 @@ public class Keystore {
         return store;
     }
 
+    public static void addKeystore(){
+        KeyStore ks = createKeyStore();
+        //generateAndAddKey(ks);
+        store(ks);
+    }
+
     /**
      * Generates a random key for the encryption, based on the inputted values by the user
      * @param store a keystore must be passed as parameter
