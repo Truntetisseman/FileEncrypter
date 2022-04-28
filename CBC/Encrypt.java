@@ -56,12 +56,6 @@ public class Encrypt {
             catch (Exception e) { e.printStackTrace(); Utility.errorDialog(file.getName(), file.getAbsolutePath(), "Encryption Error", "An error occurred", "The encryption failed please try again!"); }
         }
     }
-
-
-
-
-
-
 }
 
 

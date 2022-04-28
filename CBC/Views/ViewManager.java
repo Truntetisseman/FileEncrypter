@@ -30,5 +30,4 @@ public class ViewManager extends Application {
 
         stage.show();
     }
-
 }

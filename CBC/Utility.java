@@ -15,7 +15,6 @@ public class Utility {
         }
     }
 
-
     /**
      * Creates a new Logs object and calls the addToLogs method
      * @param _userName string
@@ -51,5 +50,4 @@ public class Utility {
         alert.showAndWait();
         Utility.logAction("Testuser", action, fileName, filePath);
     }
-
 }

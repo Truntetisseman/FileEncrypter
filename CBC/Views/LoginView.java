@@ -22,7 +22,6 @@ public class LoginView {
         StackPane login = new StackPane();
         VBox vBox1 = new VBox();
 
-
         Label uNameLabel = new Label("Username");
         Label pWordLabel = new Label("Password");
 
@@ -70,5 +69,4 @@ public class LoginView {
         }
         return false;
     }
-
 }

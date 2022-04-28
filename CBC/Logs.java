@@ -56,7 +56,6 @@ public class Logs {
         this.path = path;
     }
 
-
     @Override
     public String toString(){
         return getClass().getSimpleName() + "[Username: " + userName + ", Action: " + action + " Filename: " + fileName + " Filepath: " + path + "]";
