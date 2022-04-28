@@ -13,6 +13,7 @@ public class Main extends Application {
         stages.setScene(LoginView.loginScene());
         stages.setTitle("Scene Switch Sample");
         stages.show();
+        // min kommentar
     }
 
     /**
