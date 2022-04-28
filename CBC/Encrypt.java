@@ -11,6 +11,12 @@ import java.security.*;
 
 public class Encrypt {
 
+    /**
+     * Encrypts the selected file
+     * @param file
+     * @throws NoSuchAlgorithmException
+     * @throws NoSuchProviderException
+     */
     public static void encryptFile(File file) throws NoSuchAlgorithmException, NoSuchProviderException {
         String fileAsString = file.toString();
         Security.addProvider(new BouncyCastleProvider());

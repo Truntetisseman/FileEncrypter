@@ -11,6 +11,10 @@ import java.util.Optional;
 
 public class Keystore {
 
+    /**
+     * Creates a keystore if none is present
+     * @return
+     */
     public static KeyStore createKeyStore() {
         KeyStore store = null;
 
@@ -21,6 +25,10 @@ public class Keystore {
         return store;
     }
 
+    /**
+     * Generates a random key for the encryption, based on the inputted values by the user
+     * @param store a keystore must be passed as parameter
+     */
     public static void generateAndAddKey(KeyStore store) {
         try {
             // generation of symmetric key
@@ -41,6 +49,10 @@ public class Keystore {
         }
     }
 
+    /**
+     *
+     * @param store
+     */
     public static void store(KeyStore store) {
         try {
             FileOutputStream fOut = new FileOutputStream(Global.storeFileName);
@@ -49,6 +61,10 @@ public class Keystore {
         } catch (Exception e) { e.printStackTrace(); }
     }
 
+    /**
+     * Loads the keystore, so the password can be used
+     * @return
+     */
     public static KeyStore load() {
         KeyStore ks = null;
 
@@ -65,6 +81,10 @@ public class Keystore {
         return ks;
     }
 
+    /**
+     * Retrieves the encryption key from the keystore
+     * @return
+     */
     public static SecretKeySpec getKey() {
         SecretKeySpec key = null;
         try {

@@ -22,11 +22,10 @@ import java.security.NoSuchProviderException;
 
 public class MainView {
     /**
-     * Tableview sourced from jenkov.com
-     *
+     * The login scene with login functionality
      * @return
      */
-    public static Scene loginScene() {
+    public static Scene mainScene() {
         TabPane tabPane = new TabPane();
 
         Tab tab1 = new Tab("Encrypt");
@@ -70,7 +69,7 @@ public class MainView {
                 new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(final ActionEvent e) {
-                        File file = encryptFileChooser.showOpenDialog(loginScene().getWindow());
+                        File file = encryptFileChooser.showOpenDialog(mainScene().getWindow());
                         if (file != null) {
                             //String fileAsString = file.toString();
                             try {
@@ -115,7 +114,7 @@ public class MainView {
                     @Override
                     public void handle(final ActionEvent e) {
 
-                        File file = decryptFileChooser.showOpenDialog(loginScene().getWindow());
+                        File file = decryptFileChooser.showOpenDialog(mainScene().getWindow());
                         if (file != null) {
                             String fileAsString = file.toString();
                             String fileName = file.getName();
@@ -248,7 +247,7 @@ public class MainView {
                 new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(final ActionEvent e) {
-                        File file = fileChooser.showOpenDialog(loginScene().getWindow());
+                        File file = fileChooser.showOpenDialog(mainScene().getWindow());
                         if (file != null) {
                             String fileAsString = file.toString();
                             System.out.println(file);

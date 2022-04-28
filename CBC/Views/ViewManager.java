@@ -15,6 +15,10 @@ public class ViewManager extends Application {
         stages.show();
     }
 
+    /**
+     * Changes the scene - works as routing manager
+     * @param scene
+     */
     public static void changeScene(Scene scene){
         stages.hide();
         Stage stage = new Stage();

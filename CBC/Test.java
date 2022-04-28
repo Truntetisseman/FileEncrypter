@@ -16,6 +16,14 @@ public class Test {
 
     }
 
+    /**
+     * Tests the encryption in the following steps
+     * 1. Gets a file from the designated folder
+     * 2. Encrypts the file
+     * 3. Checks if the encrypted file is created successfully
+     * @throws NoSuchAlgorithmException
+     * @throws NoSuchProviderException
+     */
     public static void testEncryption() throws NoSuchAlgorithmException, NoSuchProviderException {
         File file = new File(Global.testfolder + "/" + Global.testEncryptFile);
         String encryptedFileName = Global.testfolder + "/" + Global.testEncryptFile + ".aes";
@@ -24,6 +32,11 @@ public class Test {
         String test = FileUtil.getTestname(encryptedFileName);
     }
 
+    /**
+     * Tests encrypted file for aes suffix
+     * If the testEncryption functions succeeds this function is called, it checks that the encrypted fil enow contains the .aes suffix
+     * @param encryptedFileName
+     */
     public static void testForSuffix(String encryptedFileName) {
 
         String[] fileParts = encryptedFileName.split("/");

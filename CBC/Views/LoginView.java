@@ -44,7 +44,7 @@ public class LoginView {
                         if(checkCredentials(uNameTextField.getText(), pWordTextField.getText()) == true){
                             System.out.print("Authorized");
                             Utility.logAction(uNameTextField.getText(), "Authorized Login", "nil", "nil");
-                            ViewManager.changeScene(MainView.loginScene());
+                            ViewManager.changeScene(MainView.mainScene());
                         } else {
                             Utility.errorDialog("nil", "nil", "Unauthorized Login Attempt", "Your login or password is incorrect", "Check your username and password and try again!");
                         }
