@@ -14,6 +14,11 @@ import java.security.Security;
 public class Decrypt {
 
 
+    /**
+     * Decrypts the selected file when supplied with the correct filename and shaFile
+     * @param plaintextFileName the name of the file
+     * @param shaFile shaFile of the encrypted file
+     */
     public static void decryptFile(String plaintextFileName, String shaFile) {
         Security.addProvider(new BouncyCastleProvider());
         KeyStore ks = Keystore.load();
@@ -51,9 +56,5 @@ public class Decrypt {
             FileUtil.write("",testFile, output, "");
             Utility.successDialog(plaintextFileName, Global.decryptFolder, "Decryption Success", plaintextFileName + " was decrypted succesfully", "The decryption worked as expected, close this window and enjoy your decrypted file");
         } catch (Exception e) { e.printStackTrace(); Utility.errorDialog(plaintextFileName, Global.decryptFolder, "Decryption Error", plaintextFileName + " was not decryption, an error occurred", "Please try again, check your passwords!"); }
-    }
-
-    public static Boolean checkForKeystore(){
-        return false;
     }
 }
