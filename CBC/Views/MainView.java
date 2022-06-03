@@ -99,7 +99,7 @@ public class MainView {
         //Content
         GridPane decryptInputGridPane = new GridPane();
         FileChooser decryptFileChooser = new FileChooser();
-        Button openButtonDecrypt = new Button("Decrypt File");
+        Button openButtonDecrypt = new Button("Decrypt Files");
 
         // Styling
         decryptInputGridPane.setHgap(6);

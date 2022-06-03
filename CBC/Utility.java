@@ -33,8 +33,8 @@ public class Utility {
     public static void successDialog(String fileName, String filePath, String action, String header, String context){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
-        alert.setHeaderText("The file was encrypted without any errors");
-        alert.setContentText("Close this window and feel safe, knowing your encryption software is secure and works!");
+        alert.setHeaderText(header);
+        alert.setContentText(context);
         alert.showAndWait();
         Utility.logAction("Testuser", action, fileName, filePath);
     }
